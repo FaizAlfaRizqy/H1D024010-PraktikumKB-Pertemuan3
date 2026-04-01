@@ -1,0 +1,20 @@
+# Nama : M. Umar Faiz Alfa Rizqy
+# NIM : H1D024010
+# Shift baru : E
+# Shift lama : H
+
+# Import library
+import numpy as np
+import skfuzzy as fuzz
+from skfuzzy import control as ctrl
+
+# variabel input
+informasi = ctrl.Antecedent(np.arange(0, 101, 1), 'k-informasi')           #range k-informasi = 0–40 unit
+
+# Suhu: dingin, normal, panas
+informasi['rendah'] = fuzz.trapmf(informasi.universe, [0, 0, 60, 75 ]) #grafik k-informasi rendah = bentuk grafik trapesium, dengan titik-titik (0,0), (0,1), (40,1), (40,0)
+informasi['sedang'] = fuzz.trimf(informasi.universe, [60, 75, 90]) #grafik k-informasi sedang = bentuk grafik segitiga, dengan titik-titik (30,0), (50,1), (70,0)
+informasi['tinggi'] = fuzz.trapmf(informasi.universe, [75, 90, 100, 100]) #grafik k-informasi tinggi = bentuk grafik trapesium, dengan titik-titik (60,0), (80,1), (100,1), (100,0)
+
+informasi.view()
+
