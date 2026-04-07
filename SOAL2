@@ -9,12 +9,130 @@ import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 
 # variabel input
-informasi = ctrl.Antecedent(np.arange(0, 101, 1), 'k-informasi')           #range k-informasi = 0–40 unit
+informasi = ctrl.Antecedent(np.arange(0, 101, 1), 'informasi')           #range k-informasi = 0–40 unit
+persyaratan = ctrl.Antecedent(np.arange(0, 101, 1), 'persyaratan')           #range k-informasi = 0–40 unit
+petugas = ctrl.Antecedent(np.arange(0, 101, 1), 'petugas')           #range k-informasi = 0–40 unit
+sarpras = ctrl.Antecedent(np.arange(0, 101, 1), 'sarpras')           #range k-informasi = 0–40 unit
+pelayanan = ctrl.Consequent(np.arange(0, 401, 1), 'pelayanan')           #range k-informasi = 0–40 unit
 
-# Suhu: dingin, normal, panas
-informasi['rendah'] = fuzz.trapmf(informasi.universe, [0, 0, 60, 75 ]) #grafik k-informasi rendah = bentuk grafik trapesium, dengan titik-titik (0,0), (0,1), (40,1), (40,0)
-informasi['sedang'] = fuzz.trimf(informasi.universe, [60, 75, 90]) #grafik k-informasi sedang = bentuk grafik segitiga, dengan titik-titik (30,0), (50,1), (70,0)
-informasi['tinggi'] = fuzz.trapmf(informasi.universe, [75, 90, 100, 100]) #grafik k-informasi tinggi = bentuk grafik trapesium, dengan titik-titik (60,0), (80,1), (100,1), (100,0)
+# Informasi: tidak memuaskan, cukup memuaskan, memuaskan
+informasi['tidak_memuaskan'] = fuzz.trapmf(informasi.universe, [0, 0, 60, 75 ]) #grafik informasi tidak memuaskan = bentuk grafik trapesium, dengan titik-titik (0,0), (0,1), (40,1), (40,0)
+informasi['cukup_memuaskan'] = fuzz.trimf(informasi.universe, [60, 75, 90]) #grafik informasi cukup memuaskan = bentuk grafik segitiga, dengan titik-titik (30,0), (50,1), (70,0)
+informasi['memuaskan'] = fuzz.trapmf(informasi.universe, [75, 90, 100, 100]) #grafik informasi memuaskan = bentuk grafik trapesium, dengan titik-titik (60,0), (80,1), (100,1), (100,0)
+
+# Persyaratan: tidak memuaskan, cukup memuaskan, memuaskan
+persyaratan['tidak_memuaskan'] = fuzz.trapmf(persyaratan.universe, [0, 0, 60, 75 ]) #grafik persyaratan tidak memuaskan = bentuk grafik trapesium, dengan titik-titik (0,0), (0,1), (40,1), (40,0)
+persyaratan['cukup_memuaskan'] = fuzz.trimf(persyaratan.universe, [60, 75, 90]) #grafik persyaratan cukup memuaskan = bentuk grafik segitiga, dengan titik-titik (30,0), (50,1), (70,0)
+persyaratan['memuaskan'] = fuzz.trapmf(persyaratan.universe, [75, 90, 100, 100]) #grafik persyaratan memuaskan = bentuk grafik trapesium, dengan titik-titik (60,0), (80,1), (100,1), (100,0)
+
+# Petugas: tidak memuaskan, cukup memuaskan, memuaskan
+petugas['tidak_memuaskan'] = fuzz.trapmf(petugas.universe, [0, 0, 60, 75 ]) #grafik petugas tidak memuaskan = bentuk grafik trapesium, dengan titik-titik (0,0), (0,1), (40,1), (40,0)
+petugas['cukup_memuaskan'] = fuzz.trimf(petugas.universe, [60, 75, 90]) #grafik petugas cukup memuaskan = bentuk grafik segitiga, dengan titik-titik (30,0), (50,1), (70,0)
+petugas['memuaskan'] = fuzz.trapmf(petugas.universe, [75, 90, 100, 100]) #grafik petugas memuaskan = bentuk grafik trapesium, dengan titik-titik (60,0), (80,1), (100,1), (100,0)
+
+# Sarpras: tidak memuaskan, cukup memuaskan, memuaskan
+sarpras['tidak_memuaskan'] = fuzz.trapmf(sarpras.universe, [0, 0, 60, 75 ]) #grafik sarpras tidak memuaskan = bentuk grafik trapesium, dengan titik-titik (0,0), (0,1), (40,1), (40,0)
+sarpras['cukup_memuaskan'] = fuzz.trimf(sarpras.universe, [60, 75, 90]) #grafik sarpras cukup memuaskan = bentuk grafik segitiga,
+sarpras['memuaskan'] = fuzz.trapmf(sarpras.universe, [75, 90, 100, 100]) #grafик sarpras memuaskan = bentuk grafик trapesium， dengan titик-titик (6０，０)， (8０，１)， (１００，１)， (１００，０)
+
+# Pelayanan: tidak memuaskan, kurang memuaskan, cukup memuaskan, memuaskan, sangat memuaskan
+pelayanan['tidak_memuaskan'] = fuzz.trapmf(pelayanan.universe, [0, 0, 50, 75 ]) #grafik pelayanan tidak memuaskan = bentuk grafik trapesium, dengan titik-titik (0,0), (0,1), (40,1), (40,0)
+pelayanan['kurang_memuaskan'] = fuzz.trapmf(pelayanan.universe, [50, 75, 100, 150]) #grafik pelayanan kurang memuaskan = bentuk grafik segitiga,
+pelayanan['cukup_memuaskan'] = fuzz.trapmf(pelayanan.universe, [100, 150, 250, 275]) #grafik pelayanan cukup memuaskan = bentuk grafik segitiga,
+pelayanan['memuaskan'] = fuzz.trapmf(pelayanan.universe, [75, 90, 100, 100]) #grafик pelayanan memuaskan = bentuk grafик trapesium， dengan titик-titик (6０，０)， (8０，１)， (１００，１)， (１００，０)
+pelayanan['sangat_memuaskan'] = fuzz.trapmf(pelayanan.universe, [100, 150, 250, 275]) #grafik pelayanan sangat memuaskan = bentuk grafik segitiga,
+
+aturan1 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['kurang_memuaskan'])
+aturan2 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan3 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['memuaskan'], pelayanan['cukup_memuaskan'])
+aturan4 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan5 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan6 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['memuaskan'], pelayanan['cukup_memuaskan'])
+aturan7 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan8 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan9 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan10 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan11 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan12 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['memuaskan'], pelayanan['cukup_memuaskan'])
+aturan13 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan14 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan15 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan16 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan17 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan18 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan19 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['memuaskan'] & petugas['tidak_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan20 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['memuaskan'] & petugas['tidak_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan21 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['memuaskan'] & petugas['tidak_memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan22 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['memuaskan'] & petugas['cukup_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan23 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['memuaskan'] & petugas['cukup_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan24 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['memuaskan'] & petugas['cukup_memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan25 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['memuaskan'] & petugas['memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['memuaskan'])
+aturan26 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['memuaskan'] & petugas['memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan27 = ctrl.Rule(informasi['tidak_memuaskan'] & persyaratan['memuaskan'] & petugas['memuaskan'] & sarpras['memuaskan'], pelayanan['sangat_memuaskan'])
+aturan28 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan29 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan30 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['memuaskan'], pelayanan['cukup_memuaskan'])
+aturan31 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan32 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan33 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan34 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan35 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan36 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan37 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan38 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan39 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan40 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan41 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan42 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan43 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['memuaskan'])
+aturan44 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan45 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['memuaskan'] & sarpras['memuaskan'], pelayanan['sangat_memuaskan'])
+aturan46 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['memuaskan'] & petugas['tidak_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan47 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['memuaskan'] & petugas['tidak_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan48 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['memuaskan'] & petugas['tidak_memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan49 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['memuaskan'] & petugas['cukup_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['memuaskan'])
+aturan50 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['memuaskan'] & petugas['cukup_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan51 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['memuaskan'] & petugas['cukup_memuaskan'] & sarpras['memuaskan'], pelayanan['sangat_memuaskan'])
+aturan52 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['memuaskan'] & petugas['memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['memuaskan'])
+aturan53 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['memuaskan'] & petugas['memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['sangat_memuaskan'])
+aturan54 = ctrl.Rule(informasi['cukup_memuaskan'] & persyaratan['memuaskan'] & petugas['memuaskan'] & sarpras['memuaskan'], pelayanan['sangat_memuaskan'])
+aturan55 = ctrl.Rule(informasi['memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan56 = ctrl.Rule(informasi['memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan57 = ctrl.Rule(informasi['memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan58 = ctrl.Rule(informasi['memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan59 = ctrl.Rule(informasi['memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan60 = ctrl.Rule(informasi['memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan61 = ctrl.Rule(informasi['memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['memuaskan'])
+aturan62 = ctrl.Rule(informasi['memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan63 = ctrl.Rule(informasi['memuaskan'] & persyaratan['tidak_memuaskan'] & petugas['memuaskan'] & sarpras['memuaskan'], pelayanan['sangat_memuaskan'])
+aturan64 = ctrl.Rule(informasi['memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['cukup_memuaskan'])
+aturan65 = ctrl.Rule(informasi['memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan66 = ctrl.Rule(informasi['memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['tidak_memuaskan'] & sarpras['memuaskan'], pelayanan['memuaskan'])
+aturan67 = ctrl.Rule(informasi['memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['memuaskan'])
+aturan68 = ctrl.Rule(informasi['memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan69 = ctrl.Rule(informasi['memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['cukup_memuaskan'] & sarpras['memuaskan'], pelayanan['sangat_memuaskan'])
+aturan70 = ctrl.Rule(informasi['memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['memuaskan'])
+aturan71 = ctrl.Rule(informasi['memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['sangat_memuaskan'])
+aturan72 = ctrl.Rule(informasi['memuaskan'] & persyaratan['cukup_memuaskan'] & petugas['memuaskan'] & sarpras['memuaskan'], pelayanan['sangat_memuaskan'])
+aturan73 = ctrl.Rule(informasi['memuaskan'] & persyaratan['memuaskan'] & petugas['tidak_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['memuaskan'])
+aturan74 = ctrl.Rule(informasi['memuaskan'] & persyaratan['memuaskan'] & petugas['tidak_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['memuaskan'])
+aturan75 = ctrl.Rule(informasi['memuaskan'] & persyaratan['memuaskan'] & petugas['tidak_memuaskan'] & sarpras['memuaskan'], pelayanan['sangat_memuaskan'])
+aturan76 = ctrl.Rule(informasi['memuaskan'] & persyaratan['memuaskan'] & petugas['cukup_memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['memuaskan'])
+aturan77 = ctrl.Rule(informasi['memuaskan'] & persyaratan['memuaskan'] & petugas['cukup_memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['sangat_memuaskan'])
+aturan78 = ctrl.Rule(informasi['memuaskan'] & persyaratan['memuaskan'] & petugas['cukup_memuaskan'] & sarpras['memuaskan'], pelayanan['sangat_memuaskan'])
+aturan79 = ctrl.Rule(informasi['memuaskan'] & persyaratan['memuaskan'] & petugas['memuaskan'] & sarpras['tidak_memuaskan'], pelayanan['sangat_memuaskan'])
+aturan80 = ctrl.Rule(informasi['memuaskan'] & persyaratan['memuaskan'] & petugas['memuaskan'] & sarpras['cukup_memuaskan'], pelayanan['sangat_memuaskan'])
+aturan81 = ctrl.Rule(informasi['memuaskan'] & persyaratan['memuaskan'] & petugas['memuaskan'] & sarpras['memuaskan'], pelayanan['sangat_memuaskan'])
+
+rules = [
+	aturan1, aturan2, aturan3, aturan4, aturan5, aturan6, aturan7, aturan8, aturan9, aturan10, aturan11, aturan12, aturan13, aturan14, aturan15, aturan16, aturan17, aturan18, aturan19,
+	aturan20, aturan21, aturan22, aturan23, aturan24, aturan25, aturan26, aturan27, aturan28, aturan29, aturan30, aturan31, aturan32, aturan33, aturan34, aturan35, aturan36, aturan37, aturan38, aturan39, 
+  aturan40, aturan41, aturan42, aturan43, aturan44, aturan45, aturan46, aturan47, aturan48, aturan49, aturan50, aturan51, aturan52, aturan53, aturan54, aturan55, aturan56, aturan57, aturan58, aturan59,
+	aturan60, aturan61, aturan62, aturan63, aturan64, aturan65, aturan66, aturan67, aturan68, aturan69, aturan70, aturan71, aturan72, aturan73, aturan74, aturan75, aturan76, aturan77, aturan78, aturan79, aturan80, aturan81,
+]
+
+pelayanan_ctrl = ctrl.ControlSystem(rules)
+pelayanan_simulasi = ctrl.ControlSystemSimulation(pelayanan_ctrl)
 
 informasi.view()
 
